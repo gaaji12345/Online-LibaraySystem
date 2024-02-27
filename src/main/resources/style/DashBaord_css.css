@@ -1,2 +1,17 @@
+#subPain{
+    -fx-background-color: #4d4a4a;
+    -fx-background-radius: 7px 0 0 7px;
+}
 
+#btnUser,#btnBranches,#btndetail,#btnLogOut,#btnBook{
+    -fx-background-color: #383939;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+
+}
+
+#btnUser:hover,#btnBranches:hover,#btnBook:hover,#btnLogout:hover,#btndetail:hover{
+    -fx-effect:  dropshadow(three-pass-box,rgba(169,50,50,0.8),10,0,0,0);
+}
 
