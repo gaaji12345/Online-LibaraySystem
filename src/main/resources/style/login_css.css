@@ -1,0 +1,29 @@
+#mainPain{
+    -fx-background-color: #FAF3F3;
+    -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.8),10,0,0,0);
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+}
+#subPain{
+    -fx-background-color: #3c3939;
+    -fx-background-radius: 7px 0 0 7px;
+}
+#btnLogin{
+    -fx-background-color: #383939;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+
+}
+
+#btnLogin:hover{
+    -fx-effect:  dropshadow(three-pass-box,rgba(169,50,50,0.8),10,0,0,0);
+}
+#txtUsername{
+    -fx-background-color:transparent;
+    -fx-border-color: transparent transparent black transparent;
+    -fx-border-width: 2px;
+}
+#txtUsername{
+    -fx-border-color: transparent transparent black transparent;
+}
