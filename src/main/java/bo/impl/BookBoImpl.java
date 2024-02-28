@@ -89,4 +89,26 @@ public class BookBoImpl {
         return false;
     }
 
+    public boolean deleteBook(Bookdto dto) {
+        session=SessionFactoryConfig.getInstance ().getSession ();
+        Transaction transaction=session.beginTransaction ();
+
+        try{
+            bookDao.setSession (session);
+            bookDao.delete (new Book (
+                    dto.getBId(),
+                    dto.getTitle (),
+                    dto.getAuthor(),
+                    dto.getGenre (),
+                    dto.getStatus()
+            ));
+            transaction.commit ();
+            session.close ();
+            return true;
+        }catch (Exception e){
+            transaction.rollback ();
+        }
+        return false;
+    }
+
 }
