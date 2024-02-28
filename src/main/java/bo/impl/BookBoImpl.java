@@ -111,4 +111,21 @@ public class BookBoImpl {
         return false;
     }
 
+    public Bookdto getBook(String id) throws Exception {
+        session=SessionFactoryConfig.getInstance ().getSession ();
+        Transaction transaction=session.beginTransaction ();
+        bookDao.setSession (session);
+        Book book=bookDao.getObject (id);
+        session.close ();
+        return new Bookdto (
+                book.getbId(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getGenre(),
+                book.getStatus()
+
+        );
+    }
+
+
 }
