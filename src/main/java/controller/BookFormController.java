@@ -138,5 +138,26 @@ public class BookFormController {
     }
 
     public void deleteOn_Action(ActionEvent actionEvent) {
+        Bookdto bookdto = new Bookdto (
+                txtID.getText (),
+                txtTitle.getText (),
+                txtAuthor.getText (),
+                txtGenre.getText(),
+                cmbStatus.getValue().toString()
+
+        );
+
+        boolean isDeleted = bookBo.deleteBook (bookdto);
+
+        if (isDeleted) {
+            new Alert (Alert.AlertType.INFORMATION, "Book Delete Succes..!").show ();
+            tblLMainBook.getItems ().clear ();
+            clearDataText ();
+            loadAllBooks ();
+            setBookId ();
+        } else {
+            new Alert (Alert.AlertType.ERROR, "Something went Wrong").show ();
+        }
+
     }
 }
