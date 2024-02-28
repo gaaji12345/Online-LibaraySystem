@@ -66,4 +66,27 @@ public class BookBoImpl {
         return false;
     }
 
+    public boolean updateBook(Bookdto dto) {
+        session=SessionFactoryConfig.getInstance ().getSession ();
+        Transaction transaction=session.beginTransaction ();
+
+        try {
+            bookDao.setSession (session);
+            bookDao.update (new Book (
+                    dto.getBId(),
+                    dto.getTitle(),
+                    dto.getAuthor(),
+                    dto.getGenre(),
+                    dto.getStatus()
+            ));
+
+            transaction.commit ();
+            session.close ();
+            return true;
+        }catch (Exception e){
+            transaction.rollback ();;
+        }
+        return false;
+    }
+
 }
