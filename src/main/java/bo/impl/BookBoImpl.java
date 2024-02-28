@@ -1,5 +1,6 @@
 package bo.impl;
 
+import bo.custom.BookBo;
 import dao.custom.BookDao;
 import dao.impl.BookDaoImpl;
 import dto.Bookdto;
@@ -11,7 +12,7 @@ import util.SessionFactoryConfig;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookBoImpl {
+public class BookBoImpl implements BookBo {
 
     private Session session;
 
@@ -126,6 +127,8 @@ public class BookBoImpl {
 
         );
     }
+
+
 
 
 }
