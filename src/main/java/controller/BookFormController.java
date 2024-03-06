@@ -10,6 +10,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BookFormController {
     public TextField txtID;//751 684
@@ -64,35 +66,39 @@ public class BookFormController {
 
     public void save_OnAction(ActionEvent actionEvent) {
 
-        String bookId=txtID.getText();
-        String title=txtTitle.getText();
-        String author=txtAuthor.getText();
-        String genre=txtGenre.getText();
-        String status=cmbStatus.getValue().toString();
+        String bookId = txtID.getText();
+        String title = txtTitle.getText();
+        String author = txtAuthor.getText();
+        String genre = txtGenre.getText();
+        String status = cmbStatus.getValue().toString();
+        boolean isSaved = validateBook();
+        if (isSaved) {
+            Bookdto bookdto = new Bookdto(
+                    bookId,
+                    title,
+                    author,
+                    genre,
+                    status
+            );
 
-        Bookdto bookdto = new Bookdto (
-                bookId,
-                title,
-                author,
-                genre,
-                status
-        );
+            try {
 
-        try {
+                List<Bookdto> allBooks = bookBo.loadAll();
 
-            List<Bookdto> allBooks = bookBo.loadAll ();
+                if (checkduplicate()) {
 
-            if (checkduplicate ()) {
+                    bookBo.saveBook(bookdto);
+                    loadAllBooks();
+                    setBookId();
+                }
 
-                bookBo.saveBook (bookdto);
-                loadAllBooks();
-                setBookId();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
-        } catch (Exception e) {
-            e.printStackTrace ();
+        } else {
+         new Alert(Alert.AlertType.ERROR,"ENTER RIGHT DETAIL..!").show();
         }
-
     }
 
     private void setBookId() {
@@ -135,6 +141,11 @@ public class BookFormController {
     }
 
     private void clearDataText() {
+        txtID.clear();
+        txtTitle.clear();
+        txtAuthor.clear();
+        txtGenre.clear();
+
     }
 
     public void deleteOn_Action(ActionEvent actionEvent) {
@@ -160,4 +171,32 @@ public class BookFormController {
         }
 
     }
+
+    private boolean validateBook() {
+        String id_value=txtID.getText();
+        Pattern complie=Pattern.compile("[B][0-9]{3}");
+        Matcher matcher=complie.matcher(id_value);
+        boolean matches=matcher.matches();
+        if (!matches){
+            new Alert(Alert.AlertType.ERROR,"INVALID BOOK ID").show();
+            return  false;
+        }
+        String title=txtTitle.getText();
+        Pattern compile1 = Pattern.compile("[A-Za-z]{4,}");
+        Matcher matcher1=compile1.matcher(title);
+        boolean isAddress=matcher1.matches();
+        if (!isAddress){
+            new Alert(Alert.AlertType.ERROR,"WRONG ADDRSS TYPE").show();
+        }
+        String nameText=txtAuthor.getText();
+        boolean isnameValid= Pattern.compile("[A-Za-z]{3,}").matcher(nameText).matches();
+
+        if (!isnameValid){
+            new Alert(Alert.AlertType.ERROR,"WRONG NAME TYPE").show();
+        }
+
+        return true;
+
+    }
+
 }
