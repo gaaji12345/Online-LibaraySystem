@@ -1,0 +1,11 @@
+#subPain{
+    -fx-background-color: #3c3939;
+    -fx-background-radius: 7px 0 0 7px;
+}
+
+#btnCreate{
+    -fx-background-color: rgb(128, 128, 128);
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+}

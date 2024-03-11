@@ -1,0 +1,16 @@
+#btnConform{
+    -fx-background-color: #383939;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+
+}
+
+#txtName,#txtPassword{
+    -fx-background-color:transparent;
+    -fx-border-color: transparent transparent black transparent;
+    -fx-border-width: 2px;
+}
+#txtName,#txtPassword{
+    -fx-border-color: transparent transparent black transparent;
+}

@@ -1,0 +1,16 @@
+#txtbId,#txtName,#txtLocastion{
+    -fx-background-color:transparent;
+    -fx-border-color: transparent transparent black transparent;
+    -fx-border-width: 2px;
+}
+#txtbId,#txtName,#txtLocastion{
+    -fx-border-color: transparent transparent black transparent;
+}
+#btnSave,#btnUpdate,#btnDelete{
+    -fx-background-color: #383939;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+
+}
+
