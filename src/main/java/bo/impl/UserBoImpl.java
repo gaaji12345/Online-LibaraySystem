@@ -1,6 +1,7 @@
 package bo.impl;
 
 import bo.custom.UserBo;
+import dao.DAOFactory;
 import dao.custom.UserDao;
 import dao.impl.UserDaoImpl;
 import dto.Userdto;
@@ -15,7 +16,9 @@ import java.util.List;
 public class UserBoImpl implements UserBo {
     private Session session;
    // UserDAO userDAO=(UserDAO) DAOFactory.getDaoFactory ().getDAO (DAOFactory.DAOTypes.USER);
-    UserDao userDao=new UserDaoImpl();
+
+
+    UserDao userDao= (UserDao) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.USER);
     @Override
     public boolean saveUser(Userdto dto) {
         session= SessionFactoryConfig.getInstance ().getSession ();

@@ -1,6 +1,7 @@
 package bo.impl;
 
 import bo.custom.BookBo;
+import dao.DAOFactory;
 import dao.custom.BookDao;
 import dao.impl.BookDaoImpl;
 import dto.Bookdto;
@@ -16,7 +17,8 @@ public class BookBoImpl implements BookBo {
 
     private Session session;
 
-    BookDao bookDao=new BookDaoImpl();
+   // BookDao bookDao=new BookDaoImpl();
+    BookDao bookDao= (BookDao) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.BOOK);
 
 
     public List<Bookdto> loadAll() {

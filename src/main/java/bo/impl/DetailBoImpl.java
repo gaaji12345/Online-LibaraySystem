@@ -1,6 +1,7 @@
 package bo.impl;
 
 import bo.custom.DetailBo;
+import dao.DAOFactory;
 import dao.custom.BookDao;
 import dao.custom.DetailDao;
 import dao.custom.UserDao;
@@ -23,9 +24,11 @@ import java.util.List;
 public class DetailBoImpl  implements DetailBo {
 
 
-    DetailDao detailDao=new DetailDaoImpl();
-    UserDao userDao=new UserDaoImpl();
-    BookDao bookDao=new BookDaoImpl();
+    DetailDao detailDao= (DetailDao) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.DETAIL);
+    //UserDao userDao=new UserDaoImpl();
+    UserDao userDao= (UserDao) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.USER);
+  //  BookDao bookDao=new BookDaoImpl();
+  BookDao bookDao= (BookDao) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.BOOK);
 
     private Session session;
 //Student=User

@@ -1,6 +1,7 @@
 package bo.impl;
 
 import bo.custom.BranchesBo;
+import dao.DAOFactory;
 import dao.custom.BranchesDao;
 import dao.impl.BranchesDaoImpl;
 import dto.Branchesdto;
@@ -11,7 +12,8 @@ import java.util.stream.Collectors;
 
 public class BranchesBOImpl implements BranchesBo {
 
-    BranchesDao branchesDao=new BranchesDaoImpl();
+
+    BranchesDao branchesDao= (BranchesDao) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOTypes.BRANCHES);
 
     @Override
     public boolean saveBranches(Branchesdto dto) {
@@ -36,7 +38,7 @@ public class BranchesBOImpl implements BranchesBo {
     }
 
     @Override
-    public boolean deleteRoom(Branches dto) {
+    public boolean deleteBranch(Branches dto) {
         return branchesDao.delete(new Branches(
                 dto.getBrId(),
                 dto.getBname(),
@@ -48,7 +50,7 @@ public class BranchesBOImpl implements BranchesBo {
     }
 
     @Override
-    public Branchesdto searchRoom(String id) {
+    public Branchesdto searchBranch(String id) {
          Branches dto  = branchesDao.search(id);
 
         return new Branchesdto(
